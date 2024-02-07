@@ -34,9 +34,8 @@ services:
     ports:
       - "33062:3306"
     volumes:
-        - ./storage/mysql-data:/var/lib/mysql:delegated
-        - ./docker/dev/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
-  
+        - ./mysql:/var/lib/mysql
+        
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin-nginx-proxy-manager
