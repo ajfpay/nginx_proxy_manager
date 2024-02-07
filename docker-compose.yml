@@ -11,8 +11,8 @@ services:
     environment:
       DB_MYSQL_HOST: "db"
       DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm"
+      DB_MYSQL_USER: "root"
+      DB_MYSQL_ROOT_PASSWORD: LoginMai07"
       DB_MYSQL_NAME: "npm"
     volumes:
       - ./data:/data
@@ -28,9 +28,6 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: 'LoginMai07'
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'npm'
     ports:
       - "33062:3306"
     volumes:
