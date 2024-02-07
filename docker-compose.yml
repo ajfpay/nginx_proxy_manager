@@ -25,10 +25,10 @@ services:
     container_name: mariadb-nginx-proxy-manager
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: "LoginMai07$"
+      MYSQL_ROOT_PASSWORD: "LoginMai07"
       MYSQL_DATABASE: "db_app"
       MYSQL_USER: "drm"
-      MYSQL_PASSWORD: "LoginMai07$"
+      MYSQL_PASSWORD: "LoginMai07"
     ports:
       - "33062:3306"
     volumes:
