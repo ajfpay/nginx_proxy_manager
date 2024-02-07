@@ -19,20 +19,34 @@ services:
       - ./letsencrypt:/etc/letsencrypt
     depends_on:
       - db
+      - phpmyadmin
 
   db:
-    image: "jc21/mariadb-aria:latest"
-    container_name: mariadb-nginx-proxy-manager
+    image: "mysql:latest"
+    container_name: mysql-nginx-proxy-manager
+    command: --innodb-use-native-aio=${INNODB_USE_NATIVE_AIO:-1} --sql_mode=${SQL_MODE:-"ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"}
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_ROOT_PASSWORD: 'LoginMai07'
       MYSQL_DATABASE: 'npm'
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
     ports:
       - "33062:3306"
     volumes:
-      - ./mysql:/var/lib/mysql
+        - ./storage/mysql-data:/var/lib/mysql:delegated
+        - ./docker/dev/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin-nginx-proxy-manager
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
 
 networks:
   default:
