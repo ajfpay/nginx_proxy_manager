@@ -20,6 +20,7 @@ services:
     depends_on:
       - db
       - phpmyadmin
+      - db-postgres
 
   db:
     image: "mysql:latest"
@@ -32,6 +33,17 @@ services:
       - "33062:3306"
     volumes:
         - ./mysql:/var/lib/mysql
+        
+  db-postgres:
+    image: "postgres:15.5-bullseye"
+    container_name: postgres-nginx-proxy-manager
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: Nvidiaakun07#
+    ports:
+      - "5432:5432"
+    volumes:
+        - ./postgres:/var/lib/postgresql
         
   phpmyadmin:
     image: phpmyadmin:latest
