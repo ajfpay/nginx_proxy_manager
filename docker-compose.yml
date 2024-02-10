@@ -9,11 +9,11 @@ services:
       - "443:443"
       - "81:81"
     environment:
-      DB_MYSQL_HOST: "db"
+      DB_MYSQL_HOST: db
       DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "root"
-      DB_MYSQL_ROOT_PASSWORD: LoginMai07
-      DB_MYSQL_NAME: "npm"
+      DB_MYSQL_USER: root
+      DB_MYSQL_ROOT_PASSWORD: root
+      DB_MYSQL_NAME: npm
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
@@ -28,7 +28,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: LoginMai07
+      MYSQL_DATABASE: npm
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "33062:3306"
     volumes:
