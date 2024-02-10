@@ -9,11 +9,11 @@ services:
       - "443:443"
       - "81:81"
     environment:
-      DB_MYSQL_HOST: db
+      DB_MYSQL_HOST: "db"
       DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: root
-      DB_MYSQL_ROOT_PASSWORD: root
-      DB_MYSQL_NAME: npm
+      DB_MYSQL_USER: "npm"
+      DB_MYSQL_PASSWORD: "npm"
+      DB_MYSQL_NAME: "npm"
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
@@ -21,8 +21,20 @@ services:
       - db
       - phpmyadmin
       - db-postgres
-
+      - db-mysql
   db:
+    image: 'jc21/mariadb-aria:latest'
+    container_name: mariadb-nginx-proxy-manager
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_DATABASE: 'npm'
+      MYSQL_USER: 'npm'
+      MYSQL_PASSWORD: 'npm'
+    volumes:
+      - ./mysql_maria:/var/lib/mysql
+
+  db-mysql:
     image: "mysql:latest"
     container_name: mysql-nginx-proxy-manager
     command: --default-authentication-plugin=mysql_native_password
@@ -32,7 +44,7 @@ services:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "33062:3306"
+      - "33065:3306"
     volumes:
         - ./mysql:/var/lib/mysql
         
