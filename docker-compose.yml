@@ -49,7 +49,7 @@ services:
       - ./mysql_maria:/var/lib/mysql
 
   db-mysql:
-    image: 'mysql:8.0.32'
+    image: 'mysql:latest'
     restart: unless-stopped
     # build:
     #   context: .
