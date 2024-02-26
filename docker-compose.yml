@@ -79,7 +79,8 @@ services:
       # MYSQL_USER: root
       # MYSQL_ROOT_PASSWORD: LoginMai07
     volumes:
-        - ./mysql:/var/lib/mysql
+        - ./mysql_server:/var/lib/mysql
+        # - ./mysql:/var/lib/mysql
         
   db-postgres:
     image: "postgres:15.5-bullseye"
