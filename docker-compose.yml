@@ -54,11 +54,11 @@ services:
       dockerfile: ./infra/docker/mysql-conf/Dockerfile
     container_name: mysql-nginx-proxy-manager
     ports:
-      # - "33065:3306"
-      - target: 3306
-        published: ${DB_PUBLISHED_PORT:-3306}
-        protocol: tcp
-        mode: host
+      - "33065:3306"
+      # - target: 3306
+      #   published: ${DB_PUBLISHED_PORT:-3306}
+      #   protocol: tcp
+      #   mode: host
     # configs:
     #   - source: db-config
     #     target: /etc/my.cnf
