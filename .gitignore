@@ -5,6 +5,7 @@ yarn-error.log
 data/
 letsencrypt/
 mysql/
+mysql_maria/
 
 # Laravel 4 specific
 bootstrap/compiled.php
