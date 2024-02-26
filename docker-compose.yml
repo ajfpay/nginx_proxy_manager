@@ -1,13 +1,13 @@
 version: "3.8"
 
 
-volumes:
-  db-store:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./mysql
+# volumes:
+#   db-store:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: ./mysql
 
 # configs:
 #   db-config:
@@ -62,12 +62,12 @@ services:
     # configs:
     #   - source: db-config
     #     target: /etc/my.cnf
-    volumes:
-      - type: volume
-        source: db-store
-        target: /var/lib/mysql
-        volume:
-          nocopy: true
+    # volumes:
+    #   - type: volume
+    #     source: db-store
+    #     target: /var/lib/mysql
+    #     volume:
+    #       nocopy: true
     environment:
       - MYSQL_DATABASE=${DB_DATABASE:-laravel}
       - MYSQL_USER=${DB_USERNAME:-phper}
@@ -76,8 +76,8 @@ services:
       # MYSQL_DATABASE: npm
       # MYSQL_USER: root
       # MYSQL_ROOT_PASSWORD: LoginMai07
-    # volumes:
-    #     - ./mysql:/var/lib/mysql
+    volumes:
+        - ./mysql:/var/lib/mysql
         
   db-postgres:
     image: "postgres:15.5-bullseye"
