@@ -35,16 +35,24 @@ services:
       - ./mysql_maria:/var/lib/mysql
 
   db-mysql:
-    image: "mysql:latest"
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql/Dockerfile
     container_name: mysql-nginx-proxy-manager
-    command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: npm
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
     ports:
       - "33065:3306"
+      # - target: 3306
+      #   published: ${DB_PUBLISHED_PORT:-3306}
+        # protocol: tcp
+        # mode: host
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE:-laravel}
+      - MYSQL_USER=${DB_USERNAME:-phper}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
+      # MYSQL_DATABASE: npm
+      # MYSQL_USER: root
+      # MYSQL_ROOT_PASSWORD: LoginMai07
     volumes:
         - ./mysql:/var/lib/mysql
         
