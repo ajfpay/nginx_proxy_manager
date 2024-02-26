@@ -49,18 +49,18 @@ services:
       - ./mysql_maria:/var/lib/mysql
 
   db-mysql:
-    image: 'mysql:latest'
-    restart: unless-stopped
-    # build:
-    #   context: .
-    #   dockerfile: ./infra/docker/mysql-conf/Dockerfile
+    # image: 'mysql:latest'
+    # restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql-conf/Dockerfile
     container_name: mysql-nginx-proxy-manager
     ports:
-      - "33065:3306"
-      # - target: 3306
-      #   published: ${DB_PUBLISHED_PORT:-3306}
-      #   protocol: tcp
-      #   mode: host
+      # - "33065:3306"
+      - target: 3306
+        published: ${DB_PUBLISHED_PORT:-3306}
+        protocol: tcp
+        mode: host
     # configs:
     #   - source: db-config
     #     target: /etc/my.cnf
@@ -71,13 +71,13 @@ services:
     #     volume:
     #       nocopy: true
     environment:
-      # - MYSQL_DATABASE=${DB_DATABASE:-laravel}
-      # - MYSQL_USER=${DB_USERNAME:-phper}
-      # - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
-      # - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: LoginMai07
+      - MYSQL_DATABASE=${DB_DATABASE:-laravel}
+      - MYSQL_USER=${DB_USERNAME:-phper}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-secret}
+      # MYSQL_DATABASE: laravel
+      # MYSQL_USER: root
+      # MYSQL_ROOT_PASSWORD: LoginMai07
     volumes:
         - ./mysql:/var/lib/mysql
         
