@@ -26,7 +26,7 @@ services:
       DB_MYSQL_HOST: "db"
       DB_MYSQL_PORT: 3306
       DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm"
+      DB_MYSQL_PASSWORD: "awsTierGo07#"
       DB_MYSQL_NAME: "npm"
     volumes:
       - ./data:/data
@@ -41,7 +41,7 @@ services:
     container_name: mariadb-nginx-proxy-manager
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: 'npm'
+      MYSQL_ROOT_PASSWORD: 'awsTierGo07#'
       MYSQL_DATABASE: 'npm'
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
